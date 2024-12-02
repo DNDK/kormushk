@@ -2,6 +2,7 @@
 #include "ui_adminwindow.h"
 #include "createuserform.h"
 #include <QMessageBox>
+#include <QDebug>
 
 AdminWindow::AdminWindow(Admin* db, QWidget *parent)
     : QMainWindow(parent)

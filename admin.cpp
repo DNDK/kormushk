@@ -7,8 +7,8 @@
 #include <iostream>
 Admin::Admin(QSqlDatabase* db) {
     // db = QSqlDatabase::addDatabase("QSQLITE");
-    // db.setDatabaseName(dbName);
-    // if(!db.open()){
+    // db->setDatabaseName(dbName);
+    // if(!db->open()){
     //     qDebug() << "Я люблю грязный пенис, черный пенис...";
     // }
     this->db = db;
@@ -16,7 +16,7 @@ Admin::Admin(QSqlDatabase* db) {
 }
 
 Admin::~Admin(){
-    db.close();
+    db->close();
 }
 
 User* Admin::addUser(QString& username, QString& password, QString& role) {

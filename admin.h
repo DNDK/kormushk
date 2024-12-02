@@ -20,7 +20,7 @@ public:
 
 
 private:
-    QSqlDatabase db;
+    QSqlDatabase* db;
     void createTable();
 };
 

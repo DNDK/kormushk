@@ -2,6 +2,7 @@
 
 #include <QApplication>
 #include <QSqlDatabase>
+#include <QDebug>
 
 #include "admin.h"
 
@@ -14,7 +15,7 @@ int main(int argc, char *argv[])
         qDebug() << "Я люблю жирные члены йоу";
         return -1;
     }
-    Admin* database = new Admin(db);
+    Admin* database = new Admin(&db);
     MainWindow w(database);
     w.show();
     return a.exec();
