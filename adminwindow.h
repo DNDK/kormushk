@@ -16,6 +16,12 @@ public:
     explicit AdminWindow(Admin* db, QWidget *parent = nullptr);
     ~AdminWindow();
 
+private slots:
+    void on_pushButton_2_clicked();
+
+public slots:
+    void on_form_submitted();
+
 private:
     Ui::AdminWindow *ui;
     Admin* db;

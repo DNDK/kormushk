@@ -1,5 +1,6 @@
 #include "adminwindow.h"
 #include "ui_adminwindow.h"
+#include "createuserform.h"
 
 AdminWindow::AdminWindow(Admin* db, QWidget *parent)
     : QMainWindow(parent)
@@ -31,3 +32,15 @@ void AdminWindow::initInfo(){
         ui->tableWidget_2->setItem(i, 3, new QTableWidgetItem(user.getRole()));
     }
 }
+
+void AdminWindow::on_form_submitted(){
+    initInfo();
+}
+
+void AdminWindow::on_pushButton_2_clicked()
+{
+    CreateUserForm* form = new CreateUserForm(db);
+
+    form->show();
+}
+

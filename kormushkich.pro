@@ -13,6 +13,7 @@ CONFIG += c++17
 SOURCES += \
     admin.cpp \
     adminwindow.cpp \
+    createuserform.cpp \
     main.cpp \
     mainwindow.cpp \
     user.cpp
@@ -20,11 +21,13 @@ SOURCES += \
 HEADERS += \
     admin.h \
     adminwindow.h \
+    createuserform.h \
     mainwindow.h \
     user.h
 
 FORMS += \
     adminwindow.ui \
+    createuserform.ui \
     mainwindow.ui
 
 # Default rules for deployment.
