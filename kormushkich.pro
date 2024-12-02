@@ -13,6 +13,7 @@ CONFIG += c++17
 SOURCES += \
     admin.cpp \
     adminwindow.cpp \
+    createkormushechkaform.cpp \
     createuserform.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -21,12 +22,14 @@ SOURCES += \
 HEADERS += \
     admin.h \
     adminwindow.h \
+    createkormushechkaform.h \
     createuserform.h \
     mainwindow.h \
     user.h
 
 FORMS += \
     adminwindow.ui \
+    createkormushechkaform.ui \
     createuserform.ui \
     mainwindow.ui
 

@@ -1,6 +1,7 @@
 #include "adminwindow.h"
 #include "ui_adminwindow.h"
 #include "createuserform.h"
+#include <QMessageBox>
 
 AdminWindow::AdminWindow(Admin* db, QWidget *parent)
     : QMainWindow(parent)
@@ -33,14 +34,15 @@ void AdminWindow::initInfo(){
     }
 }
 
-void AdminWindow::on_form_submitted(){
+void AdminWindow::on_form_closed(){
+    QMessageBox::information(this, "ЫЫЫЫЫ", "ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ");
     initInfo();
 }
 
 void AdminWindow::on_pushButton_2_clicked()
 {
-    CreateUserForm* form = new CreateUserForm(db);
-
+    CreateUserForm* form = new CreateUserForm(db, this);
+    connect(form, &CreateUserForm::destroyed, this, &AdminWindow::on_form_closed);
     form->show();
+    QMessageBox::information(this, "Я ебал маму плюсов", "Я ебал всё, что связано с плюсами кста");
 }
-
