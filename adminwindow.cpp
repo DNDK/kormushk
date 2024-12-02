@@ -39,10 +39,24 @@ void AdminWindow::on_form_closed(){
     initInfo();
 }
 
+// void AdminWindow::on_pushButton_2_clicked()
+// {
+//     CreateUserForm* form = new CreateUserForm(db, this);
+//     form->show();
+// }
+
 void AdminWindow::on_pushButton_2_clicked()
 {
+    // Создаем форму создания пользователя
     CreateUserForm* form = new CreateUserForm(db, this);
-    connect(form, &CreateUserForm::destroyed, this, &AdminWindow::on_form_closed);
+
+    // Подключаем сигнал formClosed к вашему коду
+    connect(form, &CreateUserForm::formClosed, this, [this]() {
+        qDebug() << "Форма CreateUserForm закрыта.";
+        initInfo();
+        // Здесь можно обновить интерфейс или выполнить другие действия
+    });
+
+    // Показываем форму
     form->show();
-    QMessageBox::information(this, "Я ебал маму плюсов", "Я ебал всё, что связано с плюсами кста");
 }
