@@ -5,12 +5,13 @@
 #include <QString>
 #include <QDebug>
 #include <iostream>
-Admin::Admin(const QString& dbName) {
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(dbName);
-    if(!db.open()){
-        qDebug() << "Я люблю грязный пенис, черный пенис...";
-    }
+Admin::Admin(QSqlDatabase* db) {
+    // db = QSqlDatabase::addDatabase("QSQLITE");
+    // db.setDatabaseName(dbName);
+    // if(!db.open()){
+    //     qDebug() << "Я люблю грязный пенис, черный пенис...";
+    // }
+    this->db = db;
     createTable();
 }
 

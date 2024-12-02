@@ -9,7 +9,7 @@
 class Admin
 {
 public:
-    Admin(const QString& dbName);
+    Admin(QSqlDatabase* db);
     ~Admin();
     User* addUser(QString& username, QString& password, QString& role);
     User* editUser(int& id, QString& username, QString& password, QString& role);

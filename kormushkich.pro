@@ -15,6 +15,7 @@ SOURCES += \
     adminwindow.cpp \
     createkormushechkaform.cpp \
     createuserform.cpp \
+    kormushkadb.cpp \
     main.cpp \
     mainwindow.cpp \
     user.cpp
@@ -24,6 +25,7 @@ HEADERS += \
     adminwindow.h \
     createkormushechkaform.h \
     createuserform.h \
+    kormushkadb.h \
     mainwindow.h \
     user.h
 
