@@ -9,8 +9,8 @@ class KormushkaDB
 {
 public:
     KormushkaDB(QSqlDatabase* db);
-    Kormushka* createKormushka();
-    Kormushka* editKormushka();
+    Kormushka* createKormushka(QString&, QString&, int&);
+    Kormushka* editKormushka(int& id, QString& name, QString& type, int& status);
     bool deleteKormushka();
     Kormushka* getKormushka(int&);
     QList<Kormushka>* getKormushkas();

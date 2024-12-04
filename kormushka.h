@@ -5,7 +5,7 @@
 class Kormushka
 {
 public:
-    Kormushka(int, QString&, QString&, int);
+    Kormushka(int&, QString&, QString&, int&);
     int getId();
     QString getName();
     QString getType();

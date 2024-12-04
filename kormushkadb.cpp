@@ -1,11 +1,13 @@
 #include <QDebug>
 #include "kormushkadb.h"
+#include "kormushka.h"
+#include <QSqlQuery>
 
 KormushkaDB::KormushkaDB(QSqlDatabase* db) {
     this->db = db;
 }
 
-Kormushka* KormushkaDB::createKormushka(){
+Kormushka* KormushkaDB::createKormushka(QString& name, QString& type, int& status){
     QSqlQuery createQuery;
     createQuery.prepare("INSERT INTO Kormushkas(name, type, status) VALUES (:name, :type, :status);");
     createQuery.bindValue(":name", QVariant(name));
@@ -13,7 +15,7 @@ Kormushka* KormushkaDB::createKormushka(){
     createQuery.bindValue(":status", QVariant(status));
 
     if (!createQuery.exec()) {
-        qDebug() << "Ошибка при добавлении кормушки:" << createQuery.lastError().text();
+        // qDebug() << "Ошибка при добавлении кормушки:" << createQuery.lastError().text();
         return nullptr;
     }
 
@@ -21,7 +23,7 @@ Kormushka* KormushkaDB::createKormushka(){
     int newId = createQuery.lastInsertId().toInt(); // Преобразуем в int
 
     // Создаем нового пользователя с полученным id
-    Kormushkar* newKormushka = new Kormushka(newId, name, type, status); // Предполагается, что конструктор User принимает id
+    Kormushka* newKormushka = new Kormushka(newId, name, type, status); // Предполагается, что конструктор User принимает id
     return newKormushka;
 }
 Kormushka* KormushkaDB::editKormushka(int& id, QString& name, QString& type, int& status){

@@ -1,6 +1,6 @@
 #include "kormushka.h"
 
-Kormushka::Kormushka(int id, QString name, QString type, int status) {
+Kormushka::Kormushka(int& id, QString& name, QString& type, int& status) {
     this->id = id;
     this->name = name;
     this->type=type;
