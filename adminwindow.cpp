@@ -1,6 +1,7 @@
 #include "adminwindow.h"
 #include "ui_adminwindow.h"
 #include "createuserform.h"
+#include "createkormushechkaform.h"
 #include "kormushka.h"
 #include <QMessageBox>
 #include <QDebug>
@@ -86,3 +87,15 @@ void AdminWindow::on_pushButton_2_clicked()
     // Показываем форму
     form->show();
 }
+
+void AdminWindow::on_pushButton_clicked()
+{
+    CreateKormushechkaForm* form = new CreateKormushechkaForm(kormController, this);
+    connect(form, &CreateKormushechkaForm::kormFormClosed, this, [this](){
+        qDebug() << "Паша трицепс";
+        initInfo();
+    });
+
+    form->show();
+}
+
