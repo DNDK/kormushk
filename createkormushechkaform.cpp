@@ -1,7 +1,8 @@
 #include "createkormushechkaform.h"
 #include "ui_createkormushechkaform.h"
+#include "kormushkadb.h"
 
-CreateKormushechkaForm::CreateKormushechkaForm(QWidget *parent)
+CreateKormushechkaForm::CreateKormushechkaForm(KormushkaDB* kormController, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::CreateKormushechkaForm)
 {
@@ -11,4 +12,17 @@ CreateKormushechkaForm::CreateKormushechkaForm(QWidget *parent)
 CreateKormushechkaForm::~CreateKormushechkaForm()
 {
     delete ui;
+    delete controller;
+    delete niggers;
 }
+
+void CreateKormushechkaForm::initData(){
+    niggers = controller->getKormushkas();
+
+}
+
+void CreateKormushechkaForm::on_pushButton_clicked()
+{
+
+}
+

@@ -15,12 +15,23 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="2" column="1">
-    <widget class="QComboBox" name="comboBox"/>
+    <widget class="QComboBox" name="comboBox">
+     <item>
+      <property name="text">
+       <string>С дозатором</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>С датчиком</string>
+      </property>
+     </item>
+    </widget>
    </item>
    <item row="2" column="0">
     <widget class="QLabel" name="label_3">
      <property name="text">
-      <string>TextLabel</string>
+      <string>Тип</string>
      </property>
     </widget>
    </item>

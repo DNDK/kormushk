@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "admin.h"
+#include "kormushkadb.h"
 
 namespace Ui {
 class AdminWindow;
@@ -13,16 +14,17 @@ class AdminWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit AdminWindow(Admin* db, QWidget *parent = nullptr);
+    explicit AdminWindow(Admin* usersController, KormushkaDB* kormController, QWidget *parent = nullptr);
     ~AdminWindow();
 
 private slots:
     void on_pushButton_2_clicked();
-    void on_form_closed();
+    // void on_form_closed();
 
 private:
     Ui::AdminWindow *ui;
-    Admin* db;
+    Admin* usersController;
+    KormushkaDB* kormController;
     void initInfo();
 };
 

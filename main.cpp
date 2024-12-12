@@ -15,8 +15,9 @@ int main(int argc, char *argv[])
         qDebug() << "Я люблю жирные члены йоу";
         return -1;
     }
-    Admin* database = new Admin(&db);
-    MainWindow w(database);
+    Admin* usersController = new Admin(&db);
+    KormushkaDB* kormsController = new KormushkaDB(&db);
+    MainWindow w(usersController, kormsController);
     w.show();
     return a.exec();
 }

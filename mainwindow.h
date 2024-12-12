@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "admin.h"
+#include "kormushkadb.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -15,7 +16,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(Admin* db, QWidget *parent = nullptr);
+    MainWindow(Admin* usersController, KormushkaDB* kormController, QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
@@ -23,7 +24,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Admin* db;
-
+    Admin* usersController;
+    KormushkaDB* kormController;
 };
 #endif // MAINWINDOW_H
