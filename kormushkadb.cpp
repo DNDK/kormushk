@@ -2,6 +2,7 @@
 #include "kormushkadb.h"
 #include "kormushka.h"
 #include <QSqlQuery>
+#include <QSqlError>
 
 KormushkaDB::KormushkaDB(QSqlDatabase* db) {
     this->db = db;
@@ -14,6 +15,8 @@ void KormushkaDB::createTable(){
 }
 
 Kormushka* KormushkaDB::createKormushka(QString& name, QString& type, int& status){
+    qDebug() << QVariant(name) << " " << QVariant(type) << " " << QVariant(status);
+
     QSqlQuery createQuery;
     createQuery.prepare("INSERT INTO Kormushkas(name, type, status) VALUES (:name, :type, :status);");
     createQuery.bindValue(":name", QVariant(name));
@@ -21,7 +24,8 @@ Kormushka* KormushkaDB::createKormushka(QString& name, QString& type, int& statu
     createQuery.bindValue(":status", QVariant(status));
 
     if (!createQuery.exec()) {
-        // qDebug() << "Ошибка при добавлении кормушки:" << createQuery.lastError().text();
+        qDebug() << "Ошибка при добавлении кормушки:" << createQuery.lastError().text();
+        qDebug() << createQuery.lastQuery();
         return nullptr;
     }
 
