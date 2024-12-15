@@ -56,6 +56,9 @@ void UserWindow::initData(){
         ui->tableWidget->setItem(i, 2, new QTableWidgetItem(typeTranslations[korm.getType()] ) );
         ui->tableWidget->setCellWidget(i, 3, statusBar);
         ui->tableWidget->setCellWidget(i, 4, kormButton);
+
+        ui->tableWidget->setColumnWidth(4, 40);
+        ui->tableWidget->horizontalHeader()->setSectionResizeMode(4, QHeaderView::Fixed);
         // ui->tableWidget->setItem(i, 3, QTableWidgetItem(QString::number( korm.getName() ) ) );
         // ui->tableWidget->setItem(i, 4, new QTableWidgetItem(QString::number( korm.getName() ) ) );
     }
