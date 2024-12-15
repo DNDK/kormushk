@@ -43,9 +43,10 @@ void UserWindow::initData(){
         statusBar->setRange(0, 100);
         // statusBar->setValue(korm.getStatus());
         statusBar->setValue(20);
-        QIcon icon("cog-heart.png");
-        QPushButton* kormButton = new QPushButton(QIcon("cog-heart.png"), "");
+        QIcon icon(":/images/cog-heart.png");
+        QPushButton* kormButton = new QPushButton();
         // kormButton->setText("Настроить");
+        kormButton->setIcon(icon);
         connect(kormButton, &QPushButton::clicked, this, [this](){
             qDebug() << this->userId;
         });
