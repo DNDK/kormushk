@@ -10,6 +10,7 @@ KormushkaDB::KormushkaDB(QSqlDatabase* db) {
 }
 
 void KormushkaDB::createTable(){
+    qDebug() << "создание падло";
     QSqlQuery createTableQuery;
     createTableQuery.exec("CREATE TABLE IF NOT EXISTS "
                           "Kormushkas ("
@@ -17,7 +18,9 @@ void KormushkaDB::createTable(){
                           "name TEXT NOT NULL, "
                           "type TEXT NOT NULL, "
                           "status INTEGER, "
+                          "owner_id INTEGER,"
                           "FOREIGN KEY (owner_id) REFERENCES Users (id));");
+    qDebug() << createTableQuery.lastError();
 }
 
 Kormushka* KormushkaDB::createKormushka(QString& name, QString& type, int& status, int& ownerId){
@@ -95,11 +98,15 @@ QList<Kormushka>* KormushkaDB::getKormushkas(){
 }
 
 QList<Kormushka>* KormushkaDB::getKormushkas(int &userId){
+    qDebug() << QVariant(userId);
     QSqlQuery query;
-    query.prepare("select id, name, type, status from kormushkas where owner_id=:userId");
+    query.prepare("select id, name, type, status from Kormushkas where owner_id=:userId");
     query.bindValue(":userId", QVariant(userId));
     QList<Kormushka>* kormusheks = new QList<Kormushka>();
+    qDebug() << query.lastQuery();
+    query.exec();
     while(query.next()){
+        qDebug() << query.lastQuery();
         int id           = query.value(0).toInt();
         QString name     = query.value(1).toString();
         QString type     = query.value(2).toString();

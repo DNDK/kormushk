@@ -93,7 +93,8 @@ void AdminWindow::on_pushButton_2_clicked()
 
 void AdminWindow::on_pushButton_clicked()
 {
-    CreateKormushechkaForm* form = new CreateKormushechkaForm(kormController, users, this);
+    qDebug() << (users == nullptr);
+    CreateKormushechkaForm* form = new CreateKormushechkaForm(kormController, usersController->getUsers(), this);
     connect(form, &CreateKormushechkaForm::kormFormClosed, this, [this](){
         qDebug() << "Паша трицепс";
         initInfo();
