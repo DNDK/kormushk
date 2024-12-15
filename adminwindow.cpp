@@ -25,8 +25,10 @@ AdminWindow::~AdminWindow()
 }
 
 void AdminWindow::initInfo(){
+    // create tables
     // init USERS table
     QList<User>* users = usersController->getUsers();
+    this->users = users;
     QStringList headers;
     ui->tableWidget_2->setRowCount(users->length());
     ui->tableWidget_2->setColumnCount(4);
@@ -43,6 +45,7 @@ void AdminWindow::initInfo(){
 
     // init Kormushkas table
     QList<Kormushka>* korms = kormController->getKormushkas();
+    this->kormushks = korms;
     QStringList headersKorm;
     ui->tableWidget->setRowCount(users->length());
     ui->tableWidget->setColumnCount(4);
@@ -53,7 +56,7 @@ void AdminWindow::initInfo(){
         Kormushka korm = korms->at(i);
         ui->tableWidget->setItem(i, 0, new QTableWidgetItem(QString::number(korm.getId())));
         ui->tableWidget->setItem(i, 1, new QTableWidgetItem(korm.getName()));
-        ui->tableWidget->setItem(i, 2, new QTableWidgetItem(korm.getType()));
+        // ui->tableWidget->setCellWidget(i, 2, new QTableWidgetItem(korm.getType()));
         ui->tableWidget->setItem(i, 3, new QTableWidgetItem(QString::number(korm.getStatus())));
     }
 
@@ -90,7 +93,7 @@ void AdminWindow::on_pushButton_2_clicked()
 
 void AdminWindow::on_pushButton_clicked()
 {
-    CreateKormushechkaForm* form = new CreateKormushechkaForm(kormController, this);
+    CreateKormushechkaForm* form = new CreateKormushechkaForm(kormController, users, this);
     connect(form, &CreateKormushechkaForm::kormFormClosed, this, [this](){
         qDebug() << "Паша трицепс";
         initInfo();

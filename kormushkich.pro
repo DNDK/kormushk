@@ -19,7 +19,8 @@ SOURCES += \
     kormushkadb.cpp \
     main.cpp \
     mainwindow.cpp \
-    user.cpp
+    user.cpp \
+    userwindow.cpp
 
 HEADERS += \
     admin.h \
@@ -29,13 +30,15 @@ HEADERS += \
     kormushka.h \
     kormushkadb.h \
     mainwindow.h \
-    user.h
+    user.h \
+    userwindow.h
 
 FORMS += \
     adminwindow.ui \
     createkormushechkaform.ui \
     createuserform.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    userwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

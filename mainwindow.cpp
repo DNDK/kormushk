@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "adminwindow.h"
+#include "userwindow.h"
 
 MainWindow::MainWindow(Admin* usersController, KormushkaDB* kormController, QWidget *parent)
     : QMainWindow(parent)
@@ -18,6 +19,8 @@ MainWindow::~MainWindow()
     // delete kormController;
 }
 
+
+// Padlo pidoras. Padlo ne rabotaet
 void MainWindow::on_pushButton_clicked()
 {
     QString username = ui->lineEdit->text();
@@ -28,9 +31,15 @@ void MainWindow::on_pushButton_clicked()
         ui->message_label->setText("Тут ты пососал браточек");
     }else{
         ui->message_label->setText("Красавчик, " + user->getUsername());
-        AdminWindow *adminWindow = new AdminWindow(usersController, kormController);
-        adminWindow->show();
-        this->close();
+        if(user->getRole() == "admin"){
+            AdminWindow *adminWindow = new AdminWindow(usersController, kormController);
+            adminWindow->show();
+            this->close();
+        }else{
+            UserWindow* userWindow = new UserWindow(kormController, user->getId());
+            userWindow->show();
+            this->close();
+        }
     }
 }
 

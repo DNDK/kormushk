@@ -27,6 +27,9 @@ private:
     Ui::AdminWindow *ui;
     Admin* usersController;
     KormushkaDB* kormController;
+
+    QList<Kormushka>* kormushks;
+    QList<User>* users;
     void initInfo();
 };
 

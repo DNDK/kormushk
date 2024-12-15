@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "kormushka.h"
+#include "user.h"
 #include "kormushkadb.h"
 #include <QList>
 #include <QDialog>
@@ -16,7 +17,7 @@ class CreateKormushechkaForm : public QDialog
     Q_OBJECT
 
 public:
-    explicit CreateKormushechkaForm(KormushkaDB* controller, QWidget *parent = nullptr);
+    explicit CreateKormushechkaForm(KormushkaDB* controller, QList<User>* users, QWidget *parent = nullptr);
     ~CreateKormushechkaForm();
 
 signals:
@@ -33,6 +34,7 @@ private:
     KormushkaDB* controller;
     void initData();
     QList<Kormushka>* niggers;
+    QList<User>* users;
 };
 
 #endif // CREATEKORMUSHECHKAFORM_H
