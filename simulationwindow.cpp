@@ -1,5 +1,4 @@
 #include "simulationwindow.h"
-#include "ui_simulationwindow.h"
 #include <QProgressBar>
 #include <QLabel>
 #include <QListWidget>

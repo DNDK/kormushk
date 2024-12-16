@@ -3,6 +3,8 @@
 #include <QApplication>
 #include <QSqlDatabase>
 #include <QDebug>
+#include <QStyleFactory>
+
 
 #include "admin.h"
 #include "simulationwindow.h"
@@ -34,6 +36,8 @@ int main(int argc, char *argv[])
         qDebug() << "Я люблю жирные члены йоу";
         return -1;
     }
+    QStringList styles = QStyleFactory::keys();
+    qDebug() << "Доступные стили:" << styles;
     Admin* usersController = new Admin(&db);
     KormushkaDB* kormsController = new KormushkaDB(&db);
     MainWindow w(usersController, kormsController);
