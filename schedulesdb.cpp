@@ -1,6 +1,8 @@
 #include "schedulesdb.h"
 #include <QSqlQuery>
 #include <QVariant>
+#include <QDebug>
+#include <QSqlError>
 
 SchedulesDB::SchedulesDB() {
     createTable();
@@ -17,12 +19,17 @@ void SchedulesDB::createTable(){
 }
 
 void SchedulesDB::createSchedule(int& kormushkaId, QTime& feedTime){
+    qDebug() << kormushkaId;
+    qDebug() << feedTime;
     QSqlQuery query;
-    query.prepare("insert into Schedules(kormushkaId, feedTime) value(:kormushkaId, :feedTime);");
+    query.prepare("insert into Schedules(kormushka_id, feed_time) values (:kormushkaId, :feedTime);");
     query.bindValue(":kormushkaId", QVariant(kormushkaId));
 
-    QString timeFormatted = feedTime.toString("hh:mm");
+    QString timeFormatted = feedTime.toString("HH:mm");
+    qDebug() << timeFormatted;
     query.bindValue(":feedTime", QVariant(timeFormatted));
+    query.exec();
+    qDebug() << query.lastError().text() << " " << query.lastInsertId();
 }
 
 QList<Schedule>* SchedulesDB::getSchedule(int& kormushkaId){
@@ -31,7 +38,7 @@ QList<Schedule>* SchedulesDB::getSchedule(int& kormushkaId){
     query.bindValue(":kormushkaId", QVariant(kormushkaId));
     query.exec();
 
-    QList<Schedule>* scheds;
+    QList<Schedule>* scheds = new QList<Schedule>;
 
     while(query.next()){
         int id = query.value(0).toInt();
