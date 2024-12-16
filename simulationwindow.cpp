@@ -1,5 +1,8 @@
 #include "simulationwindow.h"
 #include "ui_simulationwindow.h"
+#include <QProgressBar>
+#include <QLabel>
+#include <QListWidget>
 
 SimulationWindow::SimulationWindow(KormushkaDB* kormController, QWidget* parent)
     : QDialog(parent)
@@ -37,10 +40,36 @@ void SimulationWindow::updateGroupBoxes() {
     int columns = width() / 200; // Ширина одной groupBox (например, 200)
     int row = 0, column = 0;
 
-    // Используем m_chinazes для создания QGroupBox
-    for (int i = 0; i < m_groupBoxData.size(); ++i) {
-        QGroupBox* groupBox = new QGroupBox(QString("Group %1").arg((m_groupBoxData)[i])); // Предположим, Kormushka имеет перегруженный оператор <<
-        groupBox->setFixedSize(200, 100); // Фиксированный размер
+    QList<Kormushka>* kaka = m_kormController->getKormushkas();
+    qDebug() << kaka->length();
+    for (int i = 0; i < kaka->length(); i++) {
+        Kormushka piska = kaka->at(i);
+
+        // Создание QGroupBox
+        QGroupBox* groupBox = new QGroupBox(QString("Кормушка %1").arg(piska.getName()));
+        groupBox->setFixedSize(200, 150); // Увеличиваем высоту для размещения элементов
+
+        // Создание вертикального макета для groupBox
+        QVBoxLayout* groupLayout = new QVBoxLayout(groupBox);
+
+        // Создание ProgressBar
+        QProgressBar* progressBar = new QProgressBar();
+        progressBar->setRange(0, 100); // Установка диапазона от 0 до 100
+        progressBar->setValue(piska.getStatus()); // Пример значения, можно заменить на нужное
+
+        // Создание QLabel
+        QLabel* label = new QLabel(QString("Значение: %1").arg(progressBar->value()));
+
+        // Создание QListWidget
+        QListWidget* listWidget = new QListWidget();
+        listWidget->addItems({"Item 1", "Item 2", "Item 3"}); // Пример элементов
+
+        // Добавление элементов в groupLayout
+        groupLayout->addWidget(progressBar);
+        groupLayout->addWidget(label);
+        groupLayout->addWidget(listWidget);
+
+        // Добавление groupBox в основной макет
         m_layout->addWidget(groupBox, row, column);
 
         column++;

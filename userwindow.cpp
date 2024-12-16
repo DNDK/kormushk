@@ -26,10 +26,11 @@ UserWindow::~UserWindow()
 void UserWindow::initData(){
     QList<Kormushka>* chinazes = kormController->getKormushkas(userId);
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget->verticalHeader()->setVisible(false);
     ui->tableWidget->setColumnCount(5);
     ui->tableWidget->setRowCount(chinazes->length());
     QStringList headersKorm;
-    headersKorm << QString::number(userId) << "Название" << "Тип" << "Статус";
+    headersKorm << "Id" << "Название" << "Тип" << "Статус" << "";
     ui->tableWidget->setHorizontalHeaderLabels(headersKorm);
 
     QMap<QString, QString> typeTranslations;
