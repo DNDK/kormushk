@@ -15,7 +15,7 @@ class KormushkSettings : public QWidget
     Q_OBJECT
 
 public:
-    explicit KormushkSettings(Kormushka*, KormushkaDB* kormController, QWidget *parent = nullptr);
+    explicit KormushkSettings(Kormushka, KormushkaDB* kormController, QWidget *parent = nullptr);
     ~KormushkSettings();
 
 private slots:
@@ -23,7 +23,7 @@ private slots:
 
 private:
     Ui::KormushkSettings *ui;
-    Kormushka* kormushk;
+    Kormushka kormushk;
     SchedulesDB* schedController;
     KormushkaDB* kormController;
 };

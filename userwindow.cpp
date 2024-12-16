@@ -1,5 +1,7 @@
 #include "userwindow.h"
 #include "ui_userwindow.h"
+#include "kormushksettings.h"
+
 #include <QProgressBar>
 #include <QPushButton>
 #include <QDebug>
@@ -47,8 +49,9 @@ void UserWindow::initData(){
         QPushButton* kormButton = new QPushButton();
         // kormButton->setText("Настроить");
         kormButton->setIcon(icon);
-        connect(kormButton, &QPushButton::clicked, this, [this](){
-            qDebug() << this->userId;
+        connect(kormButton, &QPushButton::clicked, this, [this, korm](){
+            KormushkSettings* settings = new KormushkSettings(korm, kormController, this);
+            settings->show();
         });
 
         ui->tableWidget->setItem(i, 0, new QTableWidgetItem(QString::number( korm.getId() ) ) );

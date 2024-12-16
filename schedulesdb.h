@@ -11,7 +11,7 @@ public:
     void createSchedule(int&, QTime&);
     QList<Schedule>* getSchedule(int&);
     void deleteSchedule(int&);
-    Schedule* editSchedule(int&, QTime&);
+    Schedule* editSchedule(int&, int&, QTime&);
 
 
 private:

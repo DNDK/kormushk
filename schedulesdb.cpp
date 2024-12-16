@@ -1,5 +1,6 @@
 #include "schedulesdb.h"
 #include <QSqlQuery>
+#include <QVariant>
 
 SchedulesDB::SchedulesDB() {
     createTable();
@@ -15,7 +16,7 @@ void SchedulesDB::createTable(){
                ");");
 }
 
-void SchedulesDB::createSchedule(int& kormushkaId, QTime feedTime){
+void SchedulesDB::createSchedule(int& kormushkaId, QTime& feedTime){
     QSqlQuery query;
     query.prepare("insert into Schedules(kormushkaId, feedTime) value(:kormushkaId, :feedTime);");
     query.bindValue(":kormushkaId", QVariant(kormushkaId));
@@ -24,13 +25,13 @@ void SchedulesDB::createSchedule(int& kormushkaId, QTime feedTime){
     query.bindValue(":feedTime", QVariant(timeFormatted));
 }
 
-QList<Shedule>* SchedulesDB::getSchedule(int & kormushkaId){
+QList<Schedule>* SchedulesDB::getSchedule(int& kormushkaId){
     QSqlQuery query;
     query.prepare("select id, kormushka_id, feed_time from Schedules where kormushka_id=:kormushkaId;");
     query.bindValue(":kormushkaId", QVariant(kormushkaId));
     query.exec();
 
-    QList<Schedule>* scheds = new QList();
+    QList<Schedule>* scheds;
 
     while(query.next()){
         int id = query.value(0).toInt();
@@ -48,7 +49,7 @@ QList<Shedule>* SchedulesDB::getSchedule(int & kormushkaId){
 void SchedulesDB::deleteSchedule(int& schedId){
     QSqlQuery query;
     query.prepare("delete from Schedules where id=:schedId");
-    query.bindValue(":schedId", schedId);
+    query.bindValue(":schedId", QVariant(schedId));
 
     query.exec();
 }

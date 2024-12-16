@@ -7,16 +7,16 @@ Kormushka::Kormushka(int& id, QString& name, QString& type, int& status) {
     this->status=status;
 }
 
-int Kormushka::getId(){
+int Kormushka::getId() const{
     return id;
 }
 
-QString Kormushka::getName(){
+QString Kormushka::getName() const{
     return name;
 }
-QString Kormushka::getType(){
+QString Kormushka::getType() const{
     return type;
 }
-int Kormushka::getStatus(){
+int Kormushka::getStatus() const{
     return status;
 }

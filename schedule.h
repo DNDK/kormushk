@@ -6,7 +6,7 @@
 class Schedule
 {
 public:
-    Schedule();
+    Schedule(int&, int&, QTime&);
     int getId();
     int getKormushkaId();
     QTime getFeedTime();

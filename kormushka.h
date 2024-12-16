@@ -6,10 +6,10 @@ class Kormushka
 {
 public:
     Kormushka(int&, QString&, QString&, int&);
-    int getId();
-    QString getName();
-    QString getType();
-    int getStatus();
+    int getId() const;
+    QString getName() const;
+    QString getType() const;
+    int getStatus() const;
 private:
     int id;
     QString name;

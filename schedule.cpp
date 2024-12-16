@@ -18,10 +18,10 @@ QTime Schedule::getFeedTime(){
     return feedTime;
 }
 
-void Schedule::getKormushkaId(int& id){
+void Schedule::setKormushkaId(int& id){
     this->id = id;
 }
 
-void Schedule::getFeedTime(QTime feedTime){
+void Schedule::setFeedTime(QTime& feedTime){
     this->feedTime = feedTime;
 }
