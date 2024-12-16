@@ -19,7 +19,8 @@ void KormushkaDB::createTable(){
                           "type TEXT NOT NULL, "
                           "status INTEGER, "
                           "owner_id INTEGER,"
-                          "FOREIGN KEY (owner_id) REFERENCES Users (id));");
+                          "FOREIGN KEY (owner_id) REFERENCES Users (id)"
+                          ");");
     qDebug() << createTableQuery.lastError();
 }
 
