@@ -44,23 +44,24 @@ Kormushka* KormushkaDB::createKormushka(QString& name, QString& type, int& statu
     int newId = createQuery.lastInsertId().toInt(); // Преобразуем в int
 
     // Создаем нового пользователя с полученным id
-    Kormushka* newKormushka = new Kormushka(newId, name, type, status); // Предполагается, что конструктор User принимает id
+    Kormushka* newKormushka = new Kormushka(newId, name, type, status, ownerId); // Предполагается, что конструктор User принимает id
     return newKormushka;
 }
 Kormushka* KormushkaDB::editKormushka(int& id, QString& name, QString& type, int& status, int& ownerId){
     QSqlQuery editQuery;
-    editQuery.prepare("UPDATE Kormushkas SET name=:name, type=:type, type=:status WHERE id=:id");
+    editQuery.prepare("UPDATE Kormushkas SET name=:name, type=:type, type=:status owner_id=:ownerId WHERE id=:id");
     editQuery.bindValue(":name", QVariant(name));
     editQuery.bindValue(":type", QVariant(type));
     editQuery.bindValue(":status", QVariant(status));
     editQuery.bindValue(":id", QVariant(id)); // I LOVE PENIS !!!!!!
+    editQuery.bindValue(":onwer_id", QVariant(ownerId));
 
     if(!editQuery.exec()){
         qDebug() << "Саси мне оу ес саси саси саси";
         return nullptr;
     }
 
-    Kormushka* edittedKormushka = new Kormushka(id, name, type, status);
+    Kormushka* edittedKormushka = new Kormushka(id, name, type, status, ownerId);
     return edittedKormushka;
 }
 bool KormushkaDB::deleteKormushka(int& id){
@@ -78,7 +79,8 @@ Kormushka* KormushkaDB::getKormushka(int& id){
         QString receivedName     = getQuery.value(1).toString();
         QString receivedType     = getQuery.value(2).toString();
         int receivedStatus   = getQuery.value(3).toInt();
-        Kormushka* kormushk = new Kormushka(id, receivedName, receivedType, receivedStatus);
+        int receivedOwnerId = getQuery.value(4).toInt();
+        Kormushka* kormushk = new Kormushka(id, receivedName, receivedType, receivedStatus, receivedOwnerId);
         return kormushk; // 8====D - - -. . -.
     }
     return nullptr;
@@ -91,8 +93,9 @@ QList<Kormushka>* KormushkaDB::getKormushkas(){
         int id           = query.value(0).toInt();
         QString name     = query.value(1).toString();
         QString type     = query.value(2).toString();
-        int status       = query.value(4).toInt();
-        Kormushka currentKorm(id, name, type, status);
+        int status       = query.value(3).toInt();
+        int ownerId      = query.value(4).toInt();
+        Kormushka currentKorm(id, name, type, status, ownerId);
         kormusheks->push_back(currentKorm);
     }
     return kormusheks;
@@ -111,8 +114,9 @@ QList<Kormushka>* KormushkaDB::getKormushkas(int &userId){
         int id           = query.value(0).toInt();
         QString name     = query.value(1).toString();
         QString type     = query.value(2).toString();
-        int status       = query.value(4).toInt();
-        Kormushka currentKorm(id, name, type, status);
+        int status       = query.value(3).toInt();
+        int owner_id     = query.value(4).toInt();
+        Kormushka currentKorm(id, name, type, status, owner_id);
         kormusheks->push_back(currentKorm);
     }
     return kormusheks;
