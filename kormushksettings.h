@@ -2,9 +2,9 @@
 #define KORMUSHKSETTINGS_H
 
 #include <QWidget>
-#include "kormushka.h"
-#include "schedulesdb.h"
-#include "kormushkadb.h"
+#include "kormushka.h" // Добавьте заголовок Kormushka
+#include "kormushkadb.h" // Заголовок для KormushkaDB
+#include "schedulesdb.h" // Заголовок для SchedulesDB
 
 namespace Ui {
 class KormushkSettings;
@@ -15,7 +15,7 @@ class KormushkSettings : public QWidget
     Q_OBJECT
 
 public:
-    explicit KormushkSettings(Kormushka, KormushkaDB* kormController, QWidget *parent = nullptr);
+    explicit KormushkSettings(Kormushka kormushk, KormushkaDB* kormController, QWidget *parent = nullptr);
     ~KormushkSettings();
 
 private slots:
@@ -23,9 +23,9 @@ private slots:
 
 private:
     Ui::KormushkSettings *ui;
-    Kormushka kormushk;
-    SchedulesDB* schedController;
-    KormushkaDB* kormController;
+    Kormushka kormushk; // Объект Kormushka
+    KormushkaDB* kormController; // Указатель на KormushkaDB
+    SchedulesDB* schedController; // Указатель на SchedulesDB
 };
 
 #endif // KORMUSHKSETTINGS_H
