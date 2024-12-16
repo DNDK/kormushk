@@ -5,6 +5,7 @@
 #include <QDebug>
 
 #include "admin.h"
+#include "simulationwindow.h"
 
 int main(int argc, char *argv[])
 {
@@ -37,7 +38,12 @@ int main(int argc, char *argv[])
     KormushkaDB* kormsController = new KormushkaDB(&db);
     MainWindow w(usersController, kormsController);
     w.show();
+
+    SimulationWindow simulationWindow(kormsController);
+    simulationWindow.showMinimized(); // Свернуть окно сразу после создания
+
     return a.exec();
+
 }
 
 

@@ -17,6 +17,7 @@ AdminWindow::AdminWindow(Admin* usersController, KormushkaDB* kormController, QW
     this->initInfo();
 }
 
+
 AdminWindow::~AdminWindow()
 {
     delete ui;
@@ -70,7 +71,7 @@ void AdminWindow::initInfo(){
         ui->tableWidget->setItem(i, 0, idItem);
        // ui->tableWidget->setItem(i, 0, new QTableWidgetItem(QString::number(korm.getId())));
         ui->tableWidget->setItem(i, 1, new QTableWidgetItem(korm.getName()));
-        // ui->tableWidget->setCellWidget(i, 2, new QTableWidgetItem(korm.getType()));
+        ui->tableWidget->setItem(i, 2, new QTableWidgetItem(korm.getType()));
         ui->tableWidget->setItem(i, 3, new QTableWidgetItem(QString::number(korm.getStatus())));
     }
 

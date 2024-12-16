@@ -23,6 +23,7 @@ SOURCES += \
     mainwindow.cpp \
     schedule.cpp \
     schedulesdb.cpp \
+    simulationwindow.cpp \
     user.cpp \
     userwindow.cpp
 
@@ -38,6 +39,7 @@ HEADERS += \
     mainwindow.h \
     schedule.h \
     schedulesdb.h \
+    simulationwindow.h \
     user.h \
     userwindow.h
 
@@ -48,6 +50,7 @@ FORMS += \
     createuserform.ui \
     kormushksettings.ui \
     mainwindow.ui \
+    simulationwindow.ui \
     userwindow.ui
 
 # Default rules for deployment.
