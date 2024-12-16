@@ -55,7 +55,7 @@ void AdminWindow::initInfo(){
     QList<Kormushka>* korms = kormController->getKormushkas();
     this->kormushks = korms;
     QStringList headersKorm;
-    ui->tableWidget->setRowCount(users->length());
+    ui->tableWidget->setRowCount(korms->length());
     ui->tableWidget->setColumnCount(4);
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableWidget->verticalHeader()->setVisible(false);

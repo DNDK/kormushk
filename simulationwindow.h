@@ -10,6 +10,7 @@
 #include <QScrollArea>
 #include "kormushka.h"
 #include "kormushkadb.h"
+#include "schedulesdb.h"
 
 class KormushkaDB; // Предварительное объявление класса
 
@@ -31,6 +32,7 @@ private:
     QWidget* m_contentWidget;
     KormushkaDB* m_kormController; // Хранение указателя на KormushkaDB
     QList<Kormushka>* m_chinazes;
+    SchedulesDB* schedController;
 };
 
 #endif // SIMULATIONWINDOW_H

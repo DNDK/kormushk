@@ -2,6 +2,9 @@
 #include <QProgressBar>
 #include <QLabel>
 #include <QListWidget>
+#include <QDebug>
+
+#include "schedule.h"
 
 SimulationWindow::SimulationWindow(KormushkaDB* kormController, QWidget* parent)
     : QDialog(parent)
@@ -21,6 +24,7 @@ SimulationWindow::SimulationWindow(KormushkaDB* kormController, QWidget* parent)
     mainLayout->addWidget(m_scrollArea);
 
     updateGroupBoxes();
+    this->schedController = new SchedulesDB();
 }
 
 void SimulationWindow::resizeEvent(QResizeEvent* event) {
@@ -53,7 +57,7 @@ void SimulationWindow::updateGroupBoxes() {
 
         // Создание ProgressBar
         QProgressBar* progressBar = new QProgressBar();
-        progressBar->setRange(0, 100); // Установка диапазона от 0 до 100
+        progressBar->setRange(0, 101); // Установка диапазона от 0 до 100
         progressBar->setValue(piska.getStatus()); // Пример значения, можно заменить на нужное
 
         // Создание QLabel
@@ -61,7 +65,16 @@ void SimulationWindow::updateGroupBoxes() {
 
         // Создание QListWidget
         QListWidget* listWidget = new QListWidget();
-        listWidget->addItems({"Item 1", "Item 2", "Item 3"}); // Пример элементов
+        int piskId = piska.getId();
+        QList<Schedule>* dick = schedController->getSchedule(piskId);
+
+        listWidget->clear();
+        for(int i = 0; i < dick->length(); i++){
+            Schedule currentItem = dick->at(i);
+            QString currentTime = currentItem.getFeedTime().toString("HH:mm");
+            listWidget->addItem(currentTime);
+        }
+        // listWidget->addItems({"Item 1", "Item 2", "Item 3"}); // Пример элементов
 
         // Добавление элементов в groupLayout
         groupLayout->addWidget(progressBar);
