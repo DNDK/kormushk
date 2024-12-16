@@ -44,3 +44,24 @@ QList<Shedule>* SchedulesDB::getSchedule(int & kormushkaId){
     }
     return scheds;
 }
+
+void SchedulesDB::deleteSchedule(int& schedId){
+    QSqlQuery query;
+    query.prepare("delete from Schedules where id=:schedId");
+    query.bindValue(":schedId", schedId);
+
+    query.exec();
+}
+
+Schedule* SchedulesDB::editSchedule(int& id, int& kormushkaId, QTime& feedTime){
+    QSqlQuery query;
+    query.prepare("update Schedules set kormushka_id=:kormId feedTime=:feedTimeStr where id=:id");
+    query.bindValue(":id", QVariant(id));
+    query.bindValue(":kormId", kormushkaId);
+    query.bindValue(":feedTimeStr", QVariant( feedTime.toString("hh:mm") ));
+
+    if(query.exec()){
+        return new Schedule(id, kormushkaId, feedTime);
+    }
+    return nullptr;
+}

@@ -14,6 +14,7 @@ SOURCES += \
     admin.cpp \
     adminwindow.cpp \
     createkormushechkaform.cpp \
+    createscheduleitemform.cpp \
     createuserform.cpp \
     kormushka.cpp \
     kormushkadb.cpp \
@@ -29,6 +30,7 @@ HEADERS += \
     admin.h \
     adminwindow.h \
     createkormushechkaform.h \
+    createscheduleitemform.h \
     createuserform.h \
     kormushka.h \
     kormushkadb.h \
@@ -42,6 +44,7 @@ HEADERS += \
 FORMS += \
     adminwindow.ui \
     createkormushechkaform.ui \
+    createscheduleitemform.ui \
     createuserform.ui \
     kormushksettings.ui \
     mainwindow.ui \
