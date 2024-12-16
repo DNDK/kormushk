@@ -32,12 +32,19 @@ void AdminWindow::initInfo(){
     QStringList headers;
     ui->tableWidget_2->setRowCount(users->length());
     ui->tableWidget_2->setColumnCount(4);
+    ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget_2->verticalHeader()->setVisible(false);
+    ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Fixed);
+    ui->tableWidget_2->setColumnWidth(0, 20);
     headers << "ID" << "Имя" << "Пароль" << "Роль";
     ui->tableWidget_2->setHorizontalHeaderLabels(headers);
     // ui->tableWidget_2->setHorizontalHeaderLabels(headers);
     for(int i = 0; i < users->length(); i++){
         User user = users->at(i);
-        ui->tableWidget_2->setItem(i, 0, new QTableWidgetItem(QString::number(user.getId())));
+        //ui->tableWidget_2->setItem(i, 0, new QTableWidgetItem(QString::number(user.getId())));
+        QTableWidgetItem* idItem = new QTableWidgetItem(QString::number(user.getId()));
+        idItem->setTextAlignment(Qt::AlignCenter); // Выравнивание по центру
+        ui->tableWidget_2->setItem(i, 0, idItem);
         ui->tableWidget_2->setItem(i, 1, new QTableWidgetItem(user.getUsername()));
         ui->tableWidget_2->setItem(i, 2, new QTableWidgetItem(user.getPassword()));
         ui->tableWidget_2->setItem(i, 3, new QTableWidgetItem(user.getRole()));
@@ -49,12 +56,19 @@ void AdminWindow::initInfo(){
     QStringList headersKorm;
     ui->tableWidget->setRowCount(users->length());
     ui->tableWidget->setColumnCount(4);
-    headersKorm << "ID" << "Название" << "Тип" << "Статус";
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget->verticalHeader()->setVisible(false);
+    ui->tableWidget->setColumnWidth(0, 20);
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Fixed);
+    headersKorm << "ID" << "Название" << "Тип" << "Остаток корма";
     ui->tableWidget->setHorizontalHeaderLabels(headersKorm);
     // ui->tableWidget->setHorizontalHeaderLabels(headersKorm);
     for(int i = 0; i < korms->length(); i++){
         Kormushka korm = korms->at(i);
-        ui->tableWidget->setItem(i, 0, new QTableWidgetItem(QString::number(korm.getId())));
+        QTableWidgetItem* idItem = new QTableWidgetItem(QString::number(korm.getId()));
+        idItem->setTextAlignment(Qt::AlignCenter); // Выравнивание по центру
+        ui->tableWidget->setItem(i, 0, idItem);
+       // ui->tableWidget->setItem(i, 0, new QTableWidgetItem(QString::number(korm.getId())));
         ui->tableWidget->setItem(i, 1, new QTableWidgetItem(korm.getName()));
         // ui->tableWidget->setCellWidget(i, 2, new QTableWidgetItem(korm.getType()));
         ui->tableWidget->setItem(i, 3, new QTableWidgetItem(QString::number(korm.getStatus())));
