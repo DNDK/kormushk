@@ -24,9 +24,6 @@ void KormushkSettings::on_pushButton_2_clicked()
 {
     qDebug() << "chleny";
     // Создайте и покажите форму, если нужно
-    // CreateScheduleItemForm* form = new CreateScheduleItemForm(this);
-    // connect(form, &CreateScheduleItemForm::shit, this, [this](){
-    //     qDebug() << "Я крокодил, крокожу и буду крокодить";
-    // });
-    // form->show();
+    CreateScheduleItemForm* form = new CreateScheduleItemForm(schedController, kormushk.getId(), this);
+    form->show();
 }
