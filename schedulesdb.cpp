@@ -38,7 +38,7 @@ QList<Schedule>* SchedulesDB::getSchedule(int& kormushkaId){
     query.bindValue(":kormushkaId", QVariant(kormushkaId));
     query.exec();
 
-    QList<Schedule>* scheds;
+    QList<Schedule>* scheds = new QList<Schedule>;
 
     while(query.next()){
         int id = query.value(0).toInt();

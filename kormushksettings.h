@@ -27,6 +27,7 @@ private:
     Kormushka kormushk; // Объект Kormushka
     KormushkaDB* kormController; // Указатель на KormushkaDB
     SchedulesDB* schedController; // Указатель на SchedulesDB
+    void initData();
 };
 
 #endif // KORMUSHKSETTINGS_H
