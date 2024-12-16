@@ -2,9 +2,10 @@
 #include "ui_kormushksettings.h"
 #include "createscheduleitemform.h"
 #include <QDebug>
+#include <QDialog>
 
 KormushkSettings::KormushkSettings(Kormushka kormushk, KormushkaDB* kormController, QWidget *parent)
-    : QWidget(parent)
+    : QDialog(parent)
     , ui(new Ui::KormushkSettings)
     , kormushk(kormushk) // Инициализация объекта Kormushka
     , kormController(kormController) // Инициализация указателя на KormushkaDB
