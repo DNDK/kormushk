@@ -66,3 +66,15 @@ void UserWindow::initData(){
         // ui->tableWidget->setItem(i, 4, new QTableWidgetItem(QString::number( korm.getName() ) ) );
     }
 }
+
+void UserWindow::on_LogoutButton_clicked()
+{
+    QString program = QApplication::applicationFilePath();
+
+    // Запускаем новый экземпляр приложения
+    QProcess::startDetached(program);
+
+    // Закрываем текущее приложение
+    QApplication::quit();
+}
+

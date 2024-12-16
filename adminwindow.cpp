@@ -117,3 +117,15 @@ void AdminWindow::on_pushButton_clicked()
     form->show();
 }
 
+
+void AdminWindow::on_LogoutButton_clicked()
+{
+    QString program = QApplication::applicationFilePath();
+
+    // Запускаем новый экземпляр приложения
+    QProcess::startDetached(program);
+
+    // Закрываем текущее приложение
+    QApplication::quit();
+}
+

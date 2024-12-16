@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include "kormushkadb.h"
-#include "kormushka.h"
+#include <QProcess>
 
 namespace Ui {
 class UserWindow;
@@ -16,6 +16,9 @@ class UserWindow : public QMainWindow
 public:
     explicit UserWindow(KormushkaDB* kormController, int userId, QWidget *parent = nullptr);
     ~UserWindow();
+
+private slots:
+    void on_LogoutButton_clicked();
 
 private:
     Ui::UserWindow *ui;
